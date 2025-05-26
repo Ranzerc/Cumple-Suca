@@ -1,10 +1,41 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Función para verificar si una URL existe
+async function checkUrlExists(url) {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        console.log(`Verificando URL: ${url} - Status: ${response.status}`);
+        return response.ok;
+    } catch (error) {
+        console.error(`Error al verificar URL ${url}:`, error);
+        return false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('DOM completamente cargado');
+    
     // Elementos del DOM
     const music = document.getElementById('bg-music');
     const startButton = document.getElementById('startButton');
     const card = document.querySelector('.card');
     const songSelector = document.getElementById('songSelector');
     const volumeControl = document.getElementById('volumeControl');
+    
+    // Verificar rutas de los GIFs
+    const gifUrls = [
+        'images/MarisaGif01.gif',
+        'images/FurinaGif01.gif',
+        'images/KonataGif01.gif',
+        'images/LilyGif01.gif',
+        'images/MarisaGif02.gif',
+        'images/FurinaGif02.gif',
+        'images/FortniteGif01.gif'
+    ];
+    
+    // Verificar cada URL
+    for (const url of gifUrls) {
+        const exists = await checkUrlExists(url);
+        console.log(`[DEBUG] ${url} ${exists ? '✅' : '❌ No'} encontrado`);
+    }
 
     // Referencias a los GIFs
     const gifs = {
