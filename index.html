@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¡Feliz Cumpleaños!</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<audio id="bg-music" loop>
+    <source src="musica/Furina.mp3" type="audio/mpeg" />
+    Tu navegador no soporta audio HTML5.
+</audio>
+
+<div class="start-container">
+    <button id="startButton" class="start-button">¡Felicidades!<br>(Click)</button>
+</div>
+
+<div class="decorations">
+    🦊🐴👀😭🎂
+</div>
+
+<div class="card hidden">
+    <h1>¡Feliz Cum 🥛🧁🎊!</h1>
+    <p>
+        Quería hacer algo diferente a lo de siempre de solo
+        mandar un regalo así normal, por ello lo del acertijo raro ja, ja, ja.
+        Pero bueno, creo que ya te lo he dicho un montón de veces, pero
+        de verdad que aprecio tu compañía y el que seamos amigos hasta ahora.
+        El simple hecho de pasar momentos juntos jugando, viendo algo o simplemente
+        conversando, es algo que de verdad aprecio poder hacer contigo y espero que podamos seguir así
+        por cuanto tiempo sea posible.<br><br>
+        Te quiero y te deseo un feliz cumpleaños,<br>
+        Don Proyectado (Ran, Ranzerc, Foxarer, etc (?) <br>
+        PD: Sobre tu regalo, háblalo conmigo o si ahora mismo estoy en vc contigo, pregúntame.
+    </p>
+    
+    <!-- Controles de música -->
+    <div class="music-controls">
+        <div class="volume-control">
+            <span>🔉</span>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.7">
+            <span>🔊</span>
+        </div>
+        <select id="songSelector" class="song-selector">
+            <option value="musica/ADRIANA SALTEEE.mp3">Adriana Salte</option>
+            <option value="musica/Cancion2.mp3">Canción 2</option>
+            <option value="musica/Furina.mp3" selected>Furina</option>
+            <option value="musica/Las Papu mañanitas.mp3">Las Papu Mañanitas</option>
+            <option value="musica/Mañanitas cepillin.mp3">Mañanitas Cepillín</option>
+        </select>
+    </div>
+</div>
+
+<!-- GIFs que aparecerán después de hacer clic en el botón -->
+<div class="gif-container">
+    <!-- GIFs en las esquinas -->
+    <img src="images/MarisaGif01.gif" alt="Marisa" class="gif gif-bottom-left hidden" id="marisaGif">
+    <img src="images/FurinaGif01.gif" alt="Furina" class="gif gif-bottom-right hidden" id="furinaGif">
+    
+    <!-- GIFs adicionales en las esquinas superiores -->
+    <img src="images/KonataGif01.gif" alt="Konata" class="gif gif-top-left hidden" id="konataGif">
+    <img src="images/LilyGif01.gif" alt="Lily" class="gif gif-top-right hidden" id="lilyGif">
+    
+    <!-- GIFs más grandes en los laterales -->
+    <img src="images/MarisaGif02.gif" alt="Marisa 2" class="gif gif-left hidden" id="marisaGif2">
+    <img src="images/FurinaGif02.gif" alt="Furina 2" class="gif gif-right hidden" id="furinaGif2">
+    
+    <!-- GIF de Fortnite en la parte inferior central -->
+    <img src="images/FortniteGif01.gif" alt="Fortnite" class="gif gif-bottom-center hidden" id="fortniteGif">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

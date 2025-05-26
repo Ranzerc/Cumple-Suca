@@ -1,0 +1,217 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a2a6c, #3a4a9c, #6a5acd);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    color: #000000;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.start-button {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos para los GIFs */
+.gif-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none; /* Para que los clics pasen a través de los GIFs */
+    z-index: 5;
+}
+
+.gif {
+    position: fixed;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* GIFs en las esquinas inferiores */
+.gif-bottom-left {
+    bottom: 20px;
+    left: 20px;
+    max-width: 400px;
+}
+
+.gif-bottom-right {
+    bottom: 40px;
+    right: 40px;
+    max-width: 900px;
+}
+
+/* GIFs en las esquinas superiores */
+.gif-top-left {
+    top: 20px;
+    left: 20px;
+    max-width: 400px;
+}
+
+.gif-top-right {
+    top: 20px;
+    right: 20px;
+    max-width: 400px;
+}
+
+/* GIFs en los laterales */
+.gif-left {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 250px;
+}
+
+.gif-right {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 600px;
+}
+
+/* GIF en la parte inferior central */
+.gif-bottom-center {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 200px;
+}
+
+.gif.visible {
+    opacity: 1;
+}
+
+.decorations {
+    font-size: 2rem;
+    padding: 1rem;
+    animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+.card {
+    background: white;
+    max-width: 600px;
+    margin: 5vh auto;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card h1 {
+    color: #f57c00;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para los controles de música */
+.music-controls {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+.volume-control input[type="range"] {
+    width: 150px;
+    cursor: pointer;
+}
+
+.song-selector {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+#nowPlaying {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+
+/* Mejoras de accesibilidad para los controles de rango */
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #f57c00;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
