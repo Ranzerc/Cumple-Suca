@@ -1,4 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Función para verificar si una URL existe
+async function checkUrlExists(url) {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        console.log(`Verificando URL: ${url} - Status: ${response.status}`);
+        return response.ok;
+    } catch (error) {
+        console.error(`Error al verificar URL ${url}:`, error);
+        return false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('DOM completamente cargado');
+    
     // Elementos del DOM
     const music = document.getElementById('bg-music');
     const startButton = document.getElementById('startButton');
@@ -6,6 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const songSelector = document.getElementById('songSelector');
     const volumeControl = document.getElementById('volumeControl');
     
+    // Verificar rutas de los GIFs
+    const gifUrls = [
+        'images/MarisaGif01.gif',
+        'images/FurinaGif01.gif',
+        'images/KonataGif01.gif',
+        'images/LilyGif01.gif',
+        'images/MarisaGif02.gif',
+        'images/FurinaGif02.gif',
+        'images/FortniteGif01.gif'
+    ];
+    
+    // Verificar cada URL
+    for (const url of gifUrls) {
+        const exists = await checkUrlExists(url);
+        console.log(`[DEBUG] ${url} ${exists ? '✅' : '❌ No'} encontrado`);
+    }
+
     // Referencias a los GIFs
     const gifs = {
         marisa: document.getElementById('marisaGif'),
@@ -71,20 +102,29 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Función para iniciar la experiencia
     async function startExperience() {
+        console.log('Iniciando experiencia...');
         try {
+            console.log('Intentando reproducir música...');
             // Reproducir música
-            await music.play();
+            await music.play().catch(error => {
+                console.error('Error al reproducir música:', error);
+                throw error;
+            });
             isPlaying = true;
+            console.log('Música reproducida correctamente');
             
             // Ocultar el botón de inicio
             startButton.style.display = 'none';
             
+            console.log('Mostrando carta...');
             // Mostrar la carta con animación
             card.classList.remove('hidden');
             // Forzar el reflow para que funcione la transición
             void card.offsetWidth;
             card.classList.add('visible');
+            console.log('Carta mostrada');
             
+            // Actualizar la canción actual
             // Mostrar todos los GIFs con animaciones escalonadas
             await showGifs();
             
@@ -94,7 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Configurar el evento de clic del botón
-    startButton.addEventListener('click', startExperience);
+    console.log('Configurando evento de clic para el botón...');
+    startButton.addEventListener('click', function() {
+        console.log('Botón clickeado, iniciando experiencia...');
+        startExperience().catch(error => {
+            console.error('Error en startExperience:', error);
+        });
+    });
     
     // Cambiar de canción cuando se selecciona una nueva
     songSelector.addEventListener('change', changeSong);
